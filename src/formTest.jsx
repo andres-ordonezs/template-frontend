@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 
 /**
  * SearchBox: A search box that filters companies to those matching the search
@@ -10,9 +10,9 @@ import React, { useState, useEffect } from "react";
  * App -> RoutesList -> {CompaniesList, JobsList} -> SearchBox
  *
  */
-function formTest({ search }) {
+function FormTest({search}) {
   const [formData, setformData] = useState("");
-  console.log('formTeststate: formData', formData);
+  console.log("formTeststate: formData", formData);
 
   /** updates formData based on user input */
   function handleChange(evt) {
@@ -22,17 +22,26 @@ function formTest({ search }) {
   /** Calls parent function to update parent's state with search formData */
   async function handleSubmit(evt) {
     evt.preventDefault();
-    search(formData);
+    await fetch("http://localhost:3000/places/uploadImage", {
+      method: "POST",
+      body: formData,
+    });
     setformData("");
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <label for="myfile">Select a file:</label>
-      <input type="file" id="myfile" name="myfile" value={formData} onChange={handleChange}></input>
-      <button>Search!</button>
+      <label htmlFor="myfile">Select a file:</label>
+      <input
+        type="file"
+        id="myfile"
+        name="myfile"
+        value={formData}
+        onChange={handleChange}
+      ></input>
+      <button>Upload</button>
     </form>
   );
 }
 
-export default formTest;
+export default FormTest;
