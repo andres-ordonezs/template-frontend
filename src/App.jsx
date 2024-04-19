@@ -39,17 +39,17 @@ function App() {
     fetchProperties();
   }, []);
 
-  async function newProperty({formData}) {
+  async function newProperty(formData) {
     console.log("formData from Abb.jsx: ", formData);
     const property = await sharebnbApi.addProperty({
       title: formData.title,
       host_username: "andres",
       image: formData.image,
-      price_night: formData.price_night,
+      price_night: Number(formData.price_night),
       description: formData.description,
       address: formData.address,
     });
-    console.log("property", property);
+    setProperties((properties) => ({...properties, property}));
   }
 
   return (

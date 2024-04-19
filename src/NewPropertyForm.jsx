@@ -13,10 +13,6 @@ import "./NewPropertyForm.css";
 function NewPropertyForm({newProperty}) {
   const [formData, setFormData] = useState({});
 
-  console.log("formData:", formData);
-
-  console.log("newProperty:", newProperty);
-
   function handleSubmit(evt) {
     evt.preventDefault();
     newProperty(formData);
