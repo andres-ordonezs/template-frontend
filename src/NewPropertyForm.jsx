@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 
 import "./NewPropertyForm.css";
+import {useNavigate} from "react-router-dom";
 
 /** New Property Form
  *
@@ -10,17 +11,30 @@ import "./NewPropertyForm.css";
  * {JobsList, CompanyList} --> SearchhtmlForm
  *
  */
-function NewPropertyForm({newProperty}) {
+function NewPropertyForm({newProperty, uploadImage}) {
   const [formData, setFormData] = useState({});
+  const [fileData, setFileData] = useState({});
+
+  const navigate = useNavigate();
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    uploadImage(fileData);
     newProperty(formData);
+    navigate("/");
   }
 
   function handleChange(evt) {
     const {name, value} = evt.target;
     setFormData((fData) => ({...fData, [name]: value}));
+  }
+
+  function setFile(evt) {
+    console.log("evt fom image: ", evt);
+    const selectedFile = evt.target.files[0];
+    console.log("selectedfile fom image: ", selectedFile);
+    setFormData((formData) => ({...formData, image: selectedFile.name}));
+    setFileData(selectedFile);
   }
 
   return (
@@ -78,12 +92,12 @@ function NewPropertyForm({newProperty}) {
           />
         </div>
         <div className="form-group NewPropertyForm-imgSelect">
-          <label htmlFor="image">Image</label>
+          <label htmlFor="myfile">Image</label>
           <input
             type="file"
-            id="image"
-            name="image"
-            onChange={handleChange}
+            id="myfile"
+            name="myfile"
+            onChange={setFile}
           ></input>
         </div>
         <button type="submit" className="btn btn-primary">

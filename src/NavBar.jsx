@@ -1,7 +1,7 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
-// import {useContext} from "react";
-// import userContext from "./userContext";
+import {useContext} from "react";
+import userContext from "./userContext";
 import "./NavBar.css";
 
 /**
@@ -14,21 +14,19 @@ import "./NavBar.css";
  *
  * App -> Navbar
  */
-function NavBar() {
-  //   const {currentUser} = useContext(userContext);
+function NavBar({logout}) {
+  const {currentUser} = useContext(userContext);
 
-  //   function logoutUser() {
-  //     logout();
-  //   }
+  function logoutUser() {
+    logout();
+  }
 
   function renderLinks() {
     return (
       <div className="NavBar-routes">
-        <NavLink to="/companies">Companies</NavLink>
-        <NavLink to="/jobs">Jobs</NavLink>
-        <NavLink to="/profile">Profile</NavLink>
+        <NavLink to="/NewPropertyForm">Add Property</NavLink>
         <NavLink onClick={logoutUser} to="/">
-          Log out - {currentUser.user.username}
+          Logout ({currentUser.user.username})
         </NavLink>
       </div>
     );
@@ -39,19 +37,14 @@ function NavBar() {
       <div className="NavBar-homepage">
         <NavLink to="/">ShareBnB</NavLink>
       </div>
-      <div className="NavBar-routes">
-        <NavLink to="/NewPropertyForm">Add Property</NavLink>
-      </div>
-      {/* <div className="NavBar-routes">
-        {!currentUser.user ? (
-          <div className="NavBar-routes">
-            <NavLink to="/login">Login</NavLink>
-            <NavLink to="/signup">Sign Up</NavLink>
-          </div>
-        ) : (
-          renderLinks()
-        )}
-      </div> */}
+      {!currentUser.user ? (
+        <div className="NavBar-routes">
+          <NavLink to="/Signup">Sign up</NavLink>
+          <NavLink to="/login">Login</NavLink>
+        </div>
+      ) : (
+        renderLinks()
+      )}
     </div>
   );
 }

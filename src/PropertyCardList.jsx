@@ -18,6 +18,10 @@ function PropertyCardList({properties}) {
       {properties.map((property) => (
         <Link
           key={property.id}
+          to={{
+            pathname: `/propertyDetail/${property.id}`,
+            state: {property: property},
+          }}
           style={{textDecoration: "none"}}
           className="PropertyCardList-link"
         >

@@ -61,9 +61,15 @@ class sharebnbApi {
   }
 
   /** Get a company by handle */
-  static async getProperty(handle) {
+  static async getProperty(id) {
     let res = await this.request(`properties/${id}`);
     return res.property;
+  }
+
+  /** Get an available property */
+  static async getAvailableProperties(checkin_date, checkout_date) {
+    let res = await this.request(`properties/${checkin_date}/${checkout_date}`);
+    return res;
   }
 
   /** Get list of jobs */
@@ -103,6 +109,45 @@ class sharebnbApi {
   static async getUser(username) {
     let res = await this.request(`users/${username}`);
     return res.user;
+  }
+
+
+  /** return token when user logs in */
+  static async login({ username, password }) {
+    const res = await this.request(
+      "auth/token",
+      { username, password },
+      "POST"
+    );
+
+    return res.token;
+  }
+
+  /**
+   * Creates a booking
+   * Receives {guest_username, property_id, checkin_date, checkout_date, total_price}
+   */
+  static async createBooking({
+    guest_username,
+    property_id,
+    checkin_date,
+    checkout_date,
+    date_booked,
+    price_night }) {
+    const res = await this.request(
+      "bookings/",
+      {
+        guest_username,
+        property_id,
+        checkin_date,
+        checkout_date,
+        date_booked,
+        price_night,
+      },
+      "POST"
+    );
+
+    return res;
   }
 
 }

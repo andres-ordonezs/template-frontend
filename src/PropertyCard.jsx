@@ -10,10 +10,7 @@ import "./PropertyCard.css";
 function PropertyCard({property}) {
   return (
     <div className="PropertyCard">
-      <img
-        src="https://hips.hearstapps.com/hmg-prod/images/cayman-islands-villa-kempa-kai-2020-021-1616076929.jpg"
-        className="PropertyCard-img"
-      ></img>
+      <img src={property.image} className="PropertyCard-img"></img>
       <div className="PropertyCard-details">
         <p>
           <b>{property.title}</b>

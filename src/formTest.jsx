@@ -23,6 +23,8 @@ function FormTest({search}) {
   const formDataObj = new FormData();
   formDataObj.append("file", formData); //
 
+  console.log("formData from test:", formDataObj);
+
   /** Calls parent function to update parent's state with search formData */
   async function handleSubmit(evt) {
     evt.preventDefault();

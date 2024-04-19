@@ -2,6 +2,9 @@ import {Route, Routes, Navigate} from "react-router-dom";
 
 import HomePage from "./HomePage";
 import NewPropertyForm from "./NewPropertyForm";
+import PropertyDetail from "./PropertyDetail";
+import SignupForm from "./SignupForm";
+import LoginForm from "./LoginForm";
 
 /**
  * Routes list
@@ -12,7 +15,15 @@ import NewPropertyForm from "./NewPropertyForm";
  *
  * App -> RoutesList -> PropertiesList
  */
-function RoutesList({newProperty}) {
+function RoutesList({
+  newProperty,
+  uploadImage,
+  searchProperty,
+  signup,
+  login,
+  booking,
+  addBooking,
+}) {
   // const {currentUser} = useContext(userContext);
 
   //   function renderForHosts() {
@@ -39,15 +50,29 @@ function RoutesList({newProperty}) {
   return (
     <div>
       <Routes>
-        <Route element={<HomePage />} path="/" />
+        <Route element={<SignupForm signup={signup} />} path={"/signup"} />
+        <Route element={<LoginForm login={login} />} path={"/login"} />
         <Route
-          element={<NewPropertyForm newProperty={newProperty} />}
+          element={<HomePage searchProperty={searchProperty} />}
+          path="/"
+        />
+        <Route
+          element={
+            <NewPropertyForm
+              newProperty={newProperty}
+              uploadImage={uploadImage}
+            />
+          }
           path="/NewPropertyForm"
+        />
+        <Route
+          element={<PropertyDetail booking={booking} addBooking={addBooking} />}
+          path="/propertyDetail/:id"
         />
 
         {/* {!currentUser.user ? renderForNonLoggedUsers() : renderForLoggedUsers()} */}
 
-        <Route element={<HomePage />} path="*" />
+        <Route element={<HomePage searhProperty={searchProperty} />} path="*" />
       </Routes>
     </div>
   );

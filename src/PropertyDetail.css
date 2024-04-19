@@ -1,0 +1,46 @@
+.PropertyDetail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding-left: 20%;
+}
+
+.PropertyDetail-img {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.PropertyDetail-img > img {
+  width: 60%;
+}
+
+.PropertyDetail-container {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+}
+
+.PropertyDetail-info {
+  width: 50%;
+}
+
+.PropertyDetail-booking {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.PropertyDetail-btn {
+  background-color: #f9385d !important;
+  border-color: #f9385d !important;
+  width: 80%;
+}
+
+.PropertyDetail-dates {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
-
-import sharebnbApi from "./sharebnbApi";
+import userContext from "./userContext";
+import {useContext} from "react";
 
 import PropertyCardList from "./PropertyCardList";
 
@@ -11,24 +11,7 @@ import "./PropertiesList.css";
  * @returns
  */
 function PropertiesList() {
-  const [properties, setProperties] = useState({
-    data: [],
-    isLoading: true,
-  });
-
-  console.log("properties: ", properties);
-
-  useEffect(function fetchAllProperties() {
-    async function fetchProperties() {
-      const response = await sharebnbApi.getProperties();
-
-      setProperties({
-        data: response,
-        isLoading: false,
-      });
-    }
-    fetchProperties();
-  }, []);
+  const {properties} = useContext(userContext);
 
   return (
     <div className="PropertiesList">

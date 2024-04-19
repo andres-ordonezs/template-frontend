@@ -1,6 +1,5 @@
-import React, {useState} from "react";
-// import {useContext} from "react";
-// import userContext from "./userContext";
+import React, {useContext} from "react";
+import userContext from "./userContext";
 
 import SearchForm from "./SearchForm";
 import PropertiesList from "./PropertiesList";
@@ -17,13 +16,19 @@ import "./HomePage.css";
  * RoutesList --> HomePage
  */
 
-function HomePage() {
-  //   const {currentUser} = useContext(userContext);
-  //console.log("First Name from Homepage: ", firstName);
-  //console.log("useContext: ", useContext(userContext));
+function HomePage({searchProperty}) {
+  const {properties} = useContext(userContext);
+
+  console.log("properties from homepage: ", properties.data);
+
+  const propertiesLength = properties.data.length;
+
+  if (properties.isLoading) return <h1>Loading...</h1>;
+
+  // console.log("useContext: ", useContext(userContext));
   return (
     <div className="HomePage">
-      <SearchForm />
+      <SearchForm searchProperty={searchProperty} />
       <PropertiesList />
     </div>
   );
