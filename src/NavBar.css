@@ -1,0 +1,29 @@
+.NavBar {
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background-color: #f9385d;
+  font-size: 18px;
+}
+
+.SearchForm-container {
+  width: 100%;
+}
+
+.NavBar-routes > a {
+  padding: 0 15px;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.NavBar-homepage > a {
+  padding: 15px 0;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}

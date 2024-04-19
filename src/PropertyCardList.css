@@ -1,0 +1,10 @@
+.PropertyCardList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(278px, 1fr));
+  padding: 20px 40px;
+}
+
+.PropertyCardList-link {
+  text-decoration: none;
+  color: inherit;
+}

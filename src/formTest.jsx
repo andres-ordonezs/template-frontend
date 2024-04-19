@@ -26,7 +26,7 @@ function FormTest({search}) {
   /** Calls parent function to update parent's state with search formData */
   async function handleSubmit(evt) {
     evt.preventDefault();
-    await fetch("http://localhost:3000/places/uploadImage", {
+    await fetch("http://localhost:3000/properties/uploadImage", {
       method: "POST",
       body: formDataObj,
     });

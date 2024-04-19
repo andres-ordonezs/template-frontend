@@ -1,0 +1,23 @@
+.PropertyCard {
+  width: auto;
+  height: 350px;
+  /* background-color: red; */
+  border-radius: 10px;
+  margin: 10px 15px;
+}
+
+.PropertyCard-img {
+  height: 70%;
+  width: 100%;
+  /* background-color: blue; */
+  border-radius: 10px;
+}
+
+.PropertyCard-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px;
+  text-decoration: none;
+  color: inherit;
+}

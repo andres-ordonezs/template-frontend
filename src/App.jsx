@@ -1,8 +1,16 @@
-import {useState} from "react";
-import logo from "./logo.svg";
+import {useState, useEffect} from "react";
+import {BrowserRouter} from "react-router-dom";
+import NavBar from "./NavBar";
+import sharebnbApi from "./sharebnbApi";
+import userContext from "./userContext";
+
+import SearchForm from "./SearchForm";
+import PropertiesList from "./PropertiesList";
+
 import "./App.css";
 
 import FormTest from "./formTest";
+import RoutesList from "./RouteList";
 
 /** Component for entire page.
  *
@@ -12,18 +20,47 @@ import FormTest from "./formTest";
  */
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [properties, setProperties] = useState({
+    data: [],
+    isLoading: true,
+  });
 
-  function incrCount() {
-    setCount((count) => count + 1);
+  console.log("properties: ", properties);
+
+  useEffect(function fetchAllProperties() {
+    async function fetchProperties() {
+      const response = await sharebnbApi.getProperties();
+
+      setProperties({
+        data: response,
+        isLoading: false,
+      });
+    }
+    fetchProperties();
+  }, []);
+
+  async function newProperty({formData}) {
+    console.log("formData from Abb.jsx: ", formData);
+    const property = await sharebnbApi.addProperty({
+      title: formData.title,
+      host_username: "andres",
+      image: formData.image,
+      price_night: formData.price_night,
+      description: formData.description,
+      address: formData.address,
+    });
+    console.log("property", property);
   }
 
   return (
-    <div className="App">
-      <main>
-        <FormTest />
-      </main>
-    </div>
+    <userContext.Provider value={{properties}}>
+      <div className="App">
+        <BrowserRouter>
+          <NavBar />
+          <RoutesList properties={properties} newProperty={newProperty} />
+        </BrowserRouter>
+      </div>
+    </userContext.Provider>
   );
 }
 
